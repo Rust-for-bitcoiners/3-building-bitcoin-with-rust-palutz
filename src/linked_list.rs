@@ -1,24 +1,15 @@
 #![allow(unused)]
+use std::rc::Rc;
 
 /* This module will be taught in the class */
 
-struct LinkedList<'a, T> {
+#[derive(Clone)]
+struct LinkedList<T> {
     head: Option<Node<T>>,
-    last: &'a Option<Node<T>>,
 }
 
+#[derive(Clone)]
 struct Node<T> {
     val: T,
     next: Option<Box<Node<T>>>,
-}
-
-impl<'a, T> LinkedList<'a, T> {
-    pub fn append(&mut self, t : T) {
-        let node = Node { val : t, next : None };
-        if self.head.is_none() {
-            self.head = Some(node);
-            self.last = &self.head;
-        }
-    }
-
 }
